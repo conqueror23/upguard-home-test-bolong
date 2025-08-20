@@ -1,0 +1,43 @@
+ID: 0192243f-6073-7711-8649-7f674b8bcc95
+Name: Google
+Domain: google.com
+Website: https://google.com
+Type: public
+Industry: Business Services
+Industries: Business Services/Advertising & Marketing; Business Services/Custom Software & IT Services; Media & Internet/Data Collection & Internet Portals
+Categories: b2b, b2c, e-commerce, saas
+Employees: over-10K
+Revenue: over-1b
+Description: Google is a multinational technology company specializing in Internet-related services and products. It operates as a subsidiary of Alphabet Inc. and is renowned for its search engine and other digital services.
+Keywords: search engine, digital services, internet services, technology, multinational company, internet, advertising, cloud computing, software, hardware
+Technologies: Angies List, AWeber, Formassembly, Gmail, Google Apps, Zift Solutions, Remote, Formsite, Facebook Widget, Constant Contact, Apache, Apple-Business-Manager, Cloudflare-Cdn, Google-Analytics, Google-Tag-Manager, Google-Workspace, Litespeed-Web-Server, Microsoft-Asp-Net, Mysql, Nginx, Php, Plesk, Wordpress
+Subsidiaries: null
+Founded year: 1998
+NAICS codes: 519130, 541512, 518210
+Location:
+  Country: United States (code: US, latitude: 38, longitude: -97)
+  State: California (id: 4845, code: CA, latitude: 36.77826, longitude: -119.41793)
+  City: Mountain View (id: 130983, latitude: 37.38605, longitude: -122.08385)
+  Address: null
+  Postal code: null
+  Phone: +1 650-253-0000
+Financial:
+  Stock symbol: GOOGL
+  Stock exchange: NASDAQ
+  Total funding: 1800000000
+  Funding stage: null
+  Funding date: null
+  Funding: null
+Socials:
+  linkedin_url: null
+  linkedin_id: null
+  twitter_url: null
+  facebook_url: null
+  instagram_url: null
+  angellist_url: null
+  crunchbase_url: null
+  youtube_url: null
+  g2_url: null
+Page rank: 10
+Logo URL: https://api.companyenrich.com/companies/logo/0192243f-6073-7711-8649-7f674b8bcc95
+SEO description: null
