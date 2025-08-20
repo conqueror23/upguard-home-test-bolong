@@ -5,7 +5,8 @@ This Repo is for upguard take home test
 The main platform used to develop this project is n8n.io
 
 Domain : https://bolongwang.app.n8n.cloud
-[upguard-workflow](./upguard-workflow.png)
+
+![upguard-workflow](./upguard-workflow.png "Sales Preparation Report")
 
 ## prerequsite
 
