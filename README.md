@@ -44,12 +44,12 @@ API keys and credentials are required for each service to enable the workflow:
 ### User Journey
 
 1. User enters a prompt like:
-   "Create a Sales Preparation Report for <Company Name>, Website <Company Official Site>."
+   "Create a Sales Preparation Report for \<Company Name\>, Website \<Company Official Site\>."
 2. The workflow retrieves company information via the Company Enrichment service, using the website to ensure accuracy.
-3. A folder named "Sales Preparation Report - <Company Name>" is created in Google Drive to store all related files.
-4. A reference file "Company Details - <Company Name>.txt" is generated in the folder.
+3. A folder named "Sales Preparation Report - \<Company Name\>" is created in Google Drive to store all related files.
+4. A reference file "Company Details - \<Company Name\>.txt" is generated in the folder.
 5. The AI agent, in collaboration with the vector database, generates the final report:
-   "Sales Preparation Report - <Company Name>.txt" stored in the same folder.
+   "Sales Preparation Report - \<Company Name\>.txt" stored in the same folder.
 
 ### Workflow High level design
 
@@ -71,9 +71,9 @@ The workflow consists of 5 main blocks:
 1. input/
    1. Sales Preparation Report Template.pdf – Reference template used for embeddings and report generation.
 2. output/ - Mirrors Google Drive folder structure.
-   1. "Sales Preparation Report - <Company Name>" created dynamically based on user input.
-      1. "Company Details - <Company Name>.txt" – formatted company data for reference.
-      2. "Sales Preparation Report - <Company Name>.txt" – final generated report.
+   1. "Sales Preparation Report - \<Company Name\>" created dynamically based on user input.
+      1. "Company Details - \<Company Name\>.txt" – formatted company data for reference.
+      2. "Sales Preparation Report - \<Company Name\>.txt" – final generated report.
 3. .env.example – Sample environment variables.
 4. workflow.json – n8n workflow configuration.
 
