@@ -44,7 +44,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        256,
+        304,
         -256
       ],
       "id": "dd1c1f2f-cd37-42db-899b-ec9e899a040f",
@@ -190,21 +190,6 @@
       "id": "b8953f84-934b-487a-9a14-cf1ebacd6642",
       "name": "Merge",
       "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "operation": "toText",
-        "sourceProperty": "output",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.convertToFile",
-      "typeVersion": 1.1,
-      "position": [
-        976,
-        -464
-      ],
-      "id": "8944652f-0e23-45ad-858a-0154cbae0d63",
-      "name": "Convert to File"
     },
     {
       "parameters": {
@@ -417,7 +402,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        368,
+        384,
         -464
       ],
       "id": "5a340654-1e16-4e9c-9d7f-d1359151691f",
@@ -461,7 +446,7 @@
     },
     {
       "parameters": {
-        "content": "## Fetching Company Info from Public API\n",
+        "content": "## Fetching Company Details\n",
         "height": 400,
         "width": 640
       },
@@ -476,7 +461,7 @@
     },
     {
       "parameters": {
-        "content": "## Store Fetched Company Details into Google Drive for future reference",
+        "content": "## Store Company Details",
         "height": 400,
         "width": 1104,
         "color": 2
@@ -492,7 +477,7 @@
     },
     {
       "parameters": {
-        "content": "## Call AI Agent & Retrieval Data from pinecone Vector Database",
+        "content": "## Chat with RAG agent",
         "height": 800,
         "width": 1072,
         "color": 4
@@ -508,7 +493,7 @@
     },
     {
       "parameters": {
-        "content": "## Upload Generated Report Doc to Google Drive",
+        "content": "## Store Final Report",
         "height": 240,
         "width": 672,
         "color": 5
@@ -524,7 +509,7 @@
     },
     {
       "parameters": {
-        "content": "## Store generated report to Vector database for future Refernce",
+        "content": "## Store embeddings in vectors",
         "height": 544,
         "width": 672
       },
@@ -571,6 +556,32 @@
       }
     },
     {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        -256
+      ],
+      "id": "9ca35d74-4f3b-4fc4-80f9-ded9e7db7407",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        -464
+      ],
+      "id": "8944652f-0e23-45ad-858a-0154cbae0d63",
+      "name": "To File"
+    },
+    {
       "parameters": {
         "operation": "toText",
         "sourceProperty": "message.content",
@@ -583,18 +594,7 @@
         -848
       ],
       "id": "4687c811-492e-4649-a716-5364c86518d4",
-      "name": "Convert to File1"
-    },
-    {
-      "parameters": {},
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        416,
-        -240
-      ],
-      "id": "9ca35d74-4f3b-4fc4-80f9-ded9e7db7407",
-      "name": "Simple Memory"
+      "name": "To File1"
     }
   ],
   "pinData": {},
@@ -701,7 +701,7 @@
       "main": [
         [
           {
-            "node": "Convert to File",
+            "node": "To File",
             "type": "main",
             "index": 0
           },
@@ -709,17 +709,6 @@
             "node": "Store Report to Vector Database",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert to File": {
-      "main": [
-        [
-          {
-            "node": "Upload Report Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -837,18 +826,7 @@
       "main": [
         [
           {
-            "node": "Convert to File1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert to File1": {
-      "main": [
-        [
-          {
-            "node": "Merge",
+            "node": "To File1",
             "type": "main",
             "index": 0
           }
@@ -865,13 +843,35 @@
           }
         ]
       ]
+    },
+    "To File": {
+      "main": [
+        [
+          {
+            "node": "Upload Report Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "To File1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "92212046-8391-4b75-b843-9d8ded26cfdb",
+  "versionId": "32c550ad-d16f-43cf-9245-6ad2889909db",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "3627fc1cd370a8cc3c64c7123de6fdb468485a169af26054559baafbaf38c0de"
