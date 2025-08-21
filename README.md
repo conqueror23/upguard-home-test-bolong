@@ -9,8 +9,8 @@ Domain : https://bolongwang.app.n8n.cloud
 
 ### Dependencies
 
-The solutions was build based on following depencies
-API keys and secrets are needed for each of these following service to enable this workflow
+This solution relies on the following services.
+API keys and credentials are required for each service to enable the workflow:
 
 1. [OpenAI](https://platform.openai.com/)
 2. [Google Cloud Console](https://console.cloud.google.com/welcome?hl=en&inv=1&invt=Ab5_TA&project=n8n-playground-469414)
@@ -20,110 +20,86 @@ API keys and secrets are needed for each of these following service to enable th
 ### Setup Process
 
 1. OpenAI API Key
-   Sign up for an OpenAI account if you don’t already have one.
-   Generate an API key from the OpenAI dashboard.
-   Make sure the key has access to the following models:
-   - gpt-5-mini
-   - gpt-4o-mini
-   - text-embedding-3-small
+   Sign up for OpenAI and generate an API key.
+   Ensure access to: gpt-5-mini, gpt-4o-mini, and text-embedding-3-small.
+
 2. Google Cloud OAuth Client
-   Go to the Google Cloud Console
-   Create a new OAuth 2.0 Client ID under APIs & Services → Credentials.
-   Enable the following APIs for your project:
-   - Google Docs API
-   - Google Drive API
-     For n8n cloud usage, it’s recommended to have your OAuth client published.
+   Create an OAuth 2.0 Client ID in Google Cloud Console under APIs & Services → Credentials.
+   Enable: Google Docs API, Google Drive API.
+   For n8n cloud usage, publish the OAuth client if possible.
+
 3. Company Enrichment Service
-   Register an account and obtain an API key.
-   Keep the API key securely stored for authenticated requests.
+   Register and obtain an API key for authenticated requests.
+
 4. Pinecone Database Setup
-   Create an account at Pinecone.
-   Set up a new index with the desired configuration (e.g., vector dimension, similarity metric).
-   Generate an API key for accessing the index.
-   Ensure the API key has permissions to read and update vectors.
-5. Ensure all above API KEY and Credentials as saved as environment variables, format can reference from
-   .env.example
+   Create a new index with the desired configuration.
+   Generate an API key with read/write access for vector operations.
+
+5. Environment Variables
+   Save all keys and credentials as environment variables.
+   Reference .env.example for formatting.
 
 ## Solution Explanins
 
 ### User Journey
 
-1. The user enters a prompt:  
-   "Create/Generate a Sales Preparation Report for <Company Name>, Website <Company Official Site>."
-2. The workflow retrieves company information from the Company Enrichment service using  
-   <Company Name> and <Company Official Site>.
-   - The official site is used to precisely identify the company and avoid ambiguity.
-3. A folder named "Sales Preparation Report - <Company Name>" is created in the linked Google Drive.
-   - Note: Since customers may work on a case-by-case basis, this folder can store all related files for a specific company.
-4. For reference, a file named "Company Details - <Company Name>.txt" is generated inside the folder created in step 3.
-5. The company details are then used by the AI Agent, in collaboration with the Vector Database,
-   to produce the final report:
-   "Sales Preparation Report - <Company Name>.txt"  
-   which is saved in the same folder from step 3.
+1. User enters a prompt like:
+   "Create a Sales Preparation Report for <Company Name>, Website <Company Official Site>."
+2. The workflow retrieves company information via the Company Enrichment service, using the website to ensure accuracy.
+3. A folder named "Sales Preparation Report - <Company Name>" is created in Google Drive to store all related files.
+4. A reference file "Company Details - <Company Name>.txt" is generated in the folder.
+5. The AI agent, in collaboration with the vector database, generates the final report:
+   "Sales Preparation Report - <Company Name>.txt" stored in the same folder.
 
 ### Workflow High level design
 
 ![upguard-workflow](./upguard-workflow.png "Sales Preparation Report")
 
-There are 5 blocks in this workflow.
+The workflow consists of 5 main blocks:
 
-1. Retrieve Company Details – Fetch information from the Company Enrichment service.
-2. Save Company Details – Store "Company Details.txt" in Google Drive.
-3. Chat with RAG Agent – Interact with the OpenAI model  
-   (using gpt-5-mini for conversation, gpt-4o-mini for analysis, and text-embedding-3-small for vector storage).
-4. Save Final Report – Store "Sales Preparation Report.txt" in Google Drive.
-5. Update Vector Database – Store the report embeddings in the vector database.
+1. Retrieve Company Details – Fetch from Company Enrichment service.
+2. Save Company Details – Store Company Details.txt in Google Drive.
+3. Chat with RAG Agent – Interact with OpenAI models:
+   gpt-5-mini for conversation
+   gpt-4o-mini for analysis
+   text-embedding-3-small for vector storage
+4. Save Final Report – Store Sales Preparation Report.txt in Google Drive.
+5. Update Vector Database – Save report embeddings.
 
-## Folders explanations
+## Folders Structure
 
-1. input: input of workflow
-   Sales Preparation Report Template.pdf : processed by embedding model and stores in pinecone vector database, this template will
-   be used as a reference template for each task, and all report generation will base on this template.
+1. input/
+   Sales Preparation Report Template.pdf – Reference template used for embeddings and report generation.
+2. output/
+   Mirrors Google Drive folder structure.
+   "Sales Preparation Report - <Company Name>" created dynamically based on user input.
+   "Company Details - <Company Name>.txt" – formatted company data for reference.
+   "Sales Preparation Report - <Company Name>.txt" – final generated report.
+3. .env.example – Sample environment variables.
+4. workflow.json – n8n workflow configuration.
 
-2. output: output of workflow : the folder structure of google drive, the folder structure is same as google drive folder structure
-   "Sales Preparation Report - Google" folder:
-   This folder was generated on the fly based on user chat input.
-   For example, when user type "Create/Generate me a Sales Preparation Report for <Company Name>, Website <Company Official Site>"
-   Workflow will take the part after "for" and before next "," as the Company Name, it will then generate this folder on the fly.
+## Assumptions
 
-- "Company Details - Google.txt" : formatted results of company enrich process, stores in the same folder of current task,
-  stored for reference, incase sales person would like to refine the Preparation report. The file was generated a .txt file for easy to read
-  by non technicals.
-- "Sales Preparation Report - Google.txt": The final report generated by the workflow. The file was generated a .txt file for easy to read
-  by non technicals.
-
-3. .env.example: sample environment variables to enable this workflow, in n8n cloud, all those env are
-   needed to be save a variables
-4. workflow.json: n8n workflows file
-
-## Assumptions made
-
-1. The Sales Preparation Report Template can be used by all users when generating a Sales Preparation Report.
-   A new folder is created for each chat session.
-2. Each time a Sales Preparation Report is generated, the sales agent may need to review it against the company details.
-   Company details are collected and saved as a .txt file.
-3. This agent’s responsibilities are limited to tasks related to Sales Preparation Reports.
-   All embeddings are stored in a single vector database index.
-4. Users of this tool currently have access to Google Drive.
-   Storage options can be extended to other providers, such as AWS S3 or Azure, if required.
+1. The Sales Preparation Report template is reusable across all users.
+2. Sales agents may review reports against company details.
+3. The AI agent handles only Sales Preparation Reports.
+4. Users have access to Google Drive. Storage could be extended to AWS S3 or Azure.
 
 ## Limitations of your solution
 
-1. Users may need to provide both the Company Name and Company Website to obtain more accurate company details.
-   This is not mandatory but helps reduce ambiguity, as many companies have similar names.
-2. User input must be precise. Errors can occur if the company name and website are mismatched.
-   Example: “I want to create a Sales Preparation Report for Google, Website: www.linkedin.com”
-   could cause issues.
-3. Each report generation request triggers an API call.
-4. Every report creation generates a new Google Drive folder, and the AI Agent handles the full RAG workflow, including generation and export.
-5. This process follows a plan-and-execution workflow with minimal end-user interaction.
-6. All infrastructure has been manually set up.
-7. This solution was delivered through cloudbased n8n instance,limited integration are availabe to us
+1. Providing both company name and website improves accuracy.
+2. User input must be precise; mismatched names/websites can cause errors.
+3. Each report triggers API calls and creates a new folder.
+4. The AI agent handles full RAG workflow with minimal user interaction.
+5. Infrastructure is manually configured.
+6. Limited integrations available in the n8n cloud setup.
 
 ## How you would improve it if you had more time
 
-1. Implement a mechanism to identify which key can uniquely represent a company, improving the accuracy of each data fetch.
-2. Introduce a caching layer before calling APIs. If details for Company A were recently retrieved, the system can reuse that information instead of making a new API call.
-3. Create a centralized database to store all generated events and direct the AI Agent’s memory to it. This allows previously completed work to be reused or retrieved for similar report generation requests.
-4. Add an evaluation process to score final results, enabling gradual improvement in report quality over time.
-5. Use Terraform or a similar infrastructure-as-code tool to manage and orchestrate infrastructure consistently.
+1. Implement a unique key for each company to improve accuracy.
+2. Introduce a caching layer to reduce repeated API calls.
+3. Centralize storage of generated events for AI agent memory and reuse.
+4. Add a report evaluation system to improve quality over time.
+5. Use Terraform or similar tools for consistent infrastructure management.
+6. Self-hosted n8n instance – Provides greater functionality and simplifies the implementation of security configurations.
+7. MCP server integration – Can extend the workflow to additional tasks, such as managing Jira tickets, GitHub commits, and more.
