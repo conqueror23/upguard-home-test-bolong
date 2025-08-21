@@ -1,13 +1,15 @@
 # upguard-home-test
 
 This Repo is for upguard take home test
-
 The main platform used to develop this project is n8n.io
 
 Domain : https://bolongwang.app.n8n.cloud
 
-## Prerequsite
+## Setup instructions
 
+### Dependencies
+
+The solutions was build based on following depencies
 API keys and secrets are needed for each of these following service to enable this workflow
 
 1. [OpenAI](https://platform.openai.com/)
@@ -15,7 +17,36 @@ API keys and secrets are needed for each of these following service to enable th
 3. [Company Enrich service](https://app.companyenrich.com/)
 4. [pinecone vector database](https://app.pinecone.io/)
 
-## User Journey
+### Setup Process
+
+1. OpenAI API Key
+   Sign up for an OpenAI account if you don’t already have one.
+   Generate an API key from the OpenAI dashboard.
+   Make sure the key has access to the following models:
+   - gpt-5-mini
+   - gpt-4o-mini
+   - text-embedding-3-small
+2. Google Cloud OAuth Client
+   Go to the Google Cloud Console
+   Create a new OAuth 2.0 Client ID under APIs & Services → Credentials.
+   Enable the following APIs for your project:
+   - Google Docs API
+   - Google Drive API
+     For n8n cloud usage, it’s recommended to have your OAuth client published.
+3. Company Enrichment Service
+   Register an account and obtain an API key.
+   Keep the API key securely stored for authenticated requests.
+4. Pinecone Database Setup
+   Create an account at Pinecone.
+   Set up a new index with the desired configuration (e.g., vector dimension, similarity metric).
+   Generate an API key for accessing the index.
+   Ensure the API key has permissions to read and update vectors.
+5. Ensure all above API KEY and Credentials as saved as environment variables, format can reference from
+   .env.example
+
+## Solution Explanins
+
+### User Journey
 
 1. User input prompt "Create/Generate me a Sales Preparation Report for <Company Name>, Website <Company Official Site>"
 2. Workflow will fetch company information from Company Enrich service base on <Company Name> and <Company Official Site>(official site link will used to narrow down to precised company to avoid ambiguity)
@@ -25,7 +56,7 @@ API keys and secrets are needed for each of these following service to enable th
 5. Company Details will be used by AI Agent collarborating with Vector Database to generate a final
    "Sales Preparation Report - <Company Name>.txt" Under folder created in #stage 3
 
-## Workflow High level design
+### Workflow High level design
 
 ![upguard-workflow](./upguard-workflow.png "Sales Preparation Report")
 
@@ -58,3 +89,7 @@ There are 5 blocks in this workflow.
 
 3. .env.example: sample environment variables to enable this workflow
 4. workflow.json: the downloaded version of n8n workflows
+
+## Limitations of your solution
+
+## How you would improve it if you had more time
