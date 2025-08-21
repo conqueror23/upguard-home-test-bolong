@@ -83,6 +83,7 @@ The workflow consists of 5 main blocks:
 2. Sales agents may review reports against company details.
 3. The AI agent handles only Sales Preparation Reports.
 4. Users have access to Google Drive. Storage could be extended to AWS S3 or Azure.
+5. There are no usage limit on AI Agents
 
 ## Limitations of your solution
 
