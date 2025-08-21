@@ -461,7 +461,7 @@
     },
     {
       "parameters": {
-        "content": "## Store Company Details",
+        "content": "## Save Company Details",
         "height": 400,
         "width": 1104,
         "color": 2
@@ -493,7 +493,7 @@
     },
     {
       "parameters": {
-        "content": "## Store Final Report",
+        "content": "## Save Final Report",
         "height": 240,
         "width": 672,
         "color": 5
@@ -509,7 +509,7 @@
     },
     {
       "parameters": {
-        "content": "## Store embeddings in vectors",
+        "content": "## Update embeddings in vectors",
         "height": 544,
         "width": 672
       },
@@ -871,7 +871,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "32c550ad-d16f-43cf-9245-6ad2889909db",
+  "versionId": "014033dc-9007-4c53-b909-3a66b02f9e1c",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "3627fc1cd370a8cc3c64c7123de6fdb468485a169af26054559baafbaf38c0de"
