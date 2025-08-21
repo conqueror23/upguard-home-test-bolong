@@ -93,6 +93,7 @@ The workflow consists of 5 main blocks:
 4. The AI agent handles full RAG workflow with minimal user interaction.
 5. Infrastructure is manually configured.
 6. Limited integrations available in the n8n cloud setup.
+7. The report prioritizes data, though its visual presentation could be improved
 
 ## How you would improve it if you had more time
 
@@ -102,4 +103,5 @@ The workflow consists of 5 main blocks:
 4. Add a report evaluation system to improve quality over time.
 5. Use Terraform or similar tools for consistent infrastructure management.
 6. Self-hosted n8n instance – Provides greater functionality and simplifies the implementation of security configurations.
-7. MCP server integration – Can extend the workflow to additional tasks, such as managing Jira tickets, GitHub commits, and more.
+7. Either populate the vector database using a well-structured template or add an additional processing layer before uploading to Google Drive.
+8. MCP server integration – Can extend the workflow to additional tasks, such as managing Jira tickets, GitHub commits, and more.
