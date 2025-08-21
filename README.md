@@ -20,24 +20,24 @@ API keys and credentials are required for each service to enable the workflow:
 ### Setup Process
 
 1. OpenAI API Key
-   Sign up for OpenAI and generate an API key.
-   Ensure access to: gpt-5-mini, gpt-4o-mini, and text-embedding-3-small.
+   1. Sign up for OpenAI and generate an API key.
+   2. Ensure access to: gpt-5-mini, gpt-4o-mini, and text-embedding-3-small.
 
 2. Google Cloud OAuth Client
-   Create an OAuth 2.0 Client ID in Google Cloud Console under APIs & Services → Credentials.
-   Enable: Google Docs API, Google Drive API.
-   For n8n cloud usage, publish the OAuth client if possible.
+   1. Create an OAuth 2.0 Client ID in Google Cloud Console under APIs & Services → Credentials.
+   2. Enable: Google Docs API, Google Drive API.
+   3. For n8n cloud usage, publish the OAuth client if possible.
 
-3. Company Enrichment Service
-   Register and obtain an API key for authenticated requests.
+3. Company Enrichment Service:
+   1. Register and obtain an API key for authenticated requests.
 
-4. Pinecone Database Setup
-   Create a new index with the desired configuration.
-   Generate an API key with read/write access for vector operations.
+4. Pinecone Database Setup:
+   1. Create a new index with the desired configuration.
+   2. Generate an API key with read/write access for vector operations.
 
-5. Environment Variables
-   Save all keys and credentials as environment variables.
-   Reference .env.example for formatting.
+5. Environment Variables:
+   1. Save all keys and credentials as environment variables.
+   2. Reference .env.example for formatting.
 
 ## Solution Explanins
 
@@ -60,21 +60,21 @@ The workflow consists of 5 main blocks:
 1. Retrieve Company Details – Fetch from Company Enrichment service.
 2. Save Company Details – Store Company Details.txt in Google Drive.
 3. Chat with RAG Agent – Interact with OpenAI models:
-   gpt-5-mini for conversation
-   gpt-4o-mini for analysis
-   text-embedding-3-small for vector storage
+   1. gpt-5-mini for conversation
+   2. gpt-4o-mini for analysis
+   3. text-embedding-3-small for vector storage
 4. Save Final Report – Store Sales Preparation Report.txt in Google Drive.
 5. Update Vector Database – Save report embeddings.
 
 ## Folders Structure
 
 1. input/
-   Sales Preparation Report Template.pdf – Reference template used for embeddings and report generation.
+   1. Sales Preparation Report Template.pdf – Reference template used for embeddings and report generation.
 2. output/
-   Mirrors Google Drive folder structure.
-   "Sales Preparation Report - <Company Name>" created dynamically based on user input.
-   "Company Details - <Company Name>.txt" – formatted company data for reference.
-   "Sales Preparation Report - <Company Name>.txt" – final generated report.
+   1. Mirrors Google Drive folder structure.
+   2. "Sales Preparation Report - <Company Name>" created dynamically based on user input.
+   3. "Company Details - <Company Name>.txt" – formatted company data for reference.
+   4. "Sales Preparation Report - <Company Name>.txt" – final generated report.
 3. .env.example – Sample environment variables.
 4. workflow.json – n8n workflow configuration.
 
