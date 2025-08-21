@@ -70,11 +70,10 @@ The workflow consists of 5 main blocks:
 
 1. input/
    1. Sales Preparation Report Template.pdf – Reference template used for embeddings and report generation.
-2. output/
-   1. Mirrors Google Drive folder structure.
-   2. "Sales Preparation Report - <Company Name>" created dynamically based on user input.
-   3. "Company Details - <Company Name>.txt" – formatted company data for reference.
-   4. "Sales Preparation Report - <Company Name>.txt" – final generated report.
+2. output/ - Mirrors Google Drive folder structure.
+   1. "Sales Preparation Report - <Company Name>" created dynamically based on user input.
+      1. "Company Details - <Company Name>.txt" – formatted company data for reference.
+      2. "Sales Preparation Report - <Company Name>.txt" – final generated report.
 3. .env.example – Sample environment variables.
 4. workflow.json – n8n workflow configuration.
 
