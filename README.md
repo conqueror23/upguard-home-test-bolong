@@ -1,7 +1,7 @@
 # upguard-home-test
 
-This Repo is for upguard take home test
-The main platform used to develop this project is n8n.io
+This repository contains the UpGuard take-home test.
+The project was primarily developed using the n8n.io platform
 
 Domain : https://bolongwang.app.n8n.cloud
 
@@ -118,6 +118,7 @@ There are 5 blocks in this workflow.
 4. Every report creation generates a new Google Drive folder, and the AI Agent handles the full RAG workflow, including generation and export.
 5. This process follows a plan-and-execution workflow with minimal end-user interaction.
 6. All infrastructure has been manually set up.
+7. This solution was delivered through cloudbased n8n instance,limited integration are availabe to us
 
 ## How you would improve it if you had more time
 
